@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div>
+            <input type="radio" name="lang" value="js" />
+            <input type="radio" name="lang" value="python" />
+        </div>
+
+        <script>
+            const btn = document.getElementsByName("lang");
+            console.log(btn[1].value);
+        </script>
+    </body>
+</html>
