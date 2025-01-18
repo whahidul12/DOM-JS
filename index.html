@@ -4,16 +4,22 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <style>
+            .red {
+                color: red;
+            }
+            .bold {
+                font-weight: bold;
+            }
+        </style>
     </head>
     <body>
         <div>
-            <input type="radio" name="lang" value="js" />
-            <input type="radio" name="lang" value="python" />
+            <p>practice 001</p>
         </div>
-
-        <script>
-            const btn = document.getElementsByName("lang");
-            console.log(btn[1].value);
-        </script>
+        <button onclick="all()">all</button>
+        <button onclick="red()">red</button>
+        <button onclick="bold()">bold</button>
+        <script></script>
     </body>
 </html>
