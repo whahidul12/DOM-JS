@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            div {
+                text-align: center;
+            }
+            button {
+                padding: 5px 10px;
+                margin: 0px 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1 class="displayNum">0</h1>
+            <button class="increse" onclick="fun_increse()">+</button>
+            <button class="reset" onclick="fun_reset()">Reset</button>
+            <button class="decrese" onclick="fun_decrese()">-</button>
+        </div>
+        <script>
+            const displayNum = document.querySelector(".displayNum");
+            const increse = document.querySelector(".increse");
+            const reset = document.querySelector(".reset");
+            const decrese = document.querySelector(".decrese");
+
+            let count = 0;
+            function fun_increse() {
+                count++;
+                displayNum.innerText = count;
+            }
+            function fun_reset() {
+                count = 0;
+                displayNum.innerText = count;
+            }
+            function fun_decrese() {
+                count--;
+                displayNum.innerText = count;
+            }
+        </script>
+    </body>
+</html>
