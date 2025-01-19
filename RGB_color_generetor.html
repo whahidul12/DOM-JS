@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>RGB Color Generator</title>
+        <style>
+            body {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            #main {
+                width: 400px;
+                margin: 0 auto;
+                text-align: center;
+            }
+            h1 {
+                font-size: 2rem;
+                font-weight: bold;
+            }
+            #rgb-color-canvas {
+                height: 200px;
+                width: 200px;
+                border: 1px solid #000;
+                margin: 0 auto;
+            }
+            #rgb-color-code {
+                font-weight: bold;
+            }
+            button {
+                padding: 5px 10px;
+            }
+            #generate-new-color {
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body onload="fun_genCode()">
+        <div id="main">
+            <h1>RGB Color Generator</h1>
+            <div id="rgb-color-canvas"></div>
+            <p id="rgb-color-code">RGB(255, 255, 255)</p>
+            <button id="generate-new-color" onclick="fun_genCode()">
+                Generate New Color
+            </button>
+            <br />
+            <button id="copy-color-code">Copy Color Code</button>
+        </div>
+
+        <script>
+            const rgbColorCanvas = document.querySelector("#rgb-color-canvas");
+            const rgbColorCode = document.querySelector("#rgb-color-code");
+            const generateNewColor = document.querySelector("#generate-new-color");
+            const copyColorCode = document.querySelector("#copy-color-code");
+
+            function fun_genCode() {
+                const num1 = Math.floor(Math.random() * (255 - 0 + 1)) + 0;
+                const num2 = Math.floor(Math.random() * (255 - 0 + 1)) + 0;
+                const num3 = Math.floor(Math.random() * (255 - 0 + 1)) + 0;
+                rgbColorCanvas.style.backgroundColor = `rgb(${num1}, ${num2}, ${num3})`;
+                rgbColorCode.innerText = `RGB(${num1}, ${num2}, ${num3})`;
+            }
+
+            copyColorCode.addEventListener("click", () => {
+                const text = rgbColorCode.innerText;
+                const elem = document.createElement("textarea");
+                elem.value = text;
+                document.body.appendChild(elem);
+                elem.select();
+                document.execCommand("copy");
+                document.body.removeChild(elem);
+                alert("code copied!");
+            });
+
+            // gg.addEventListener("click", () => {
+            //     const texty = document.querySelector("..xyz");
+            //     const palce = document.createElement("textarea");
+            //     palce.value = texty;
+            //     document.body.appendChild(palce);
+            //     palce.select();
+            //     palce.execCommand("copy");
+            //     document.body.removeChild(palce);
+            // });
+        </script>
+    </body>
+</html>
