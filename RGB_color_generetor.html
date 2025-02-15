@@ -25,6 +25,7 @@
                 width: 200px;
                 border: 1px solid #000;
                 margin: 0 auto;
+                /* background-image: linear-gradient(red, green, blue); */
             }
             #rgb-color-code {
                 font-weight: bold;
@@ -37,11 +38,11 @@
             }
         </style>
     </head>
-    <body onload="fun_genCode()">
+    <body onload="generateGradient()">
         <div id="main">
-            <h1>RGB Color Generator</h1>
+            <h1>Linear-gradient Generator</h1>
             <div id="rgb-color-canvas"></div>
-            <p id="rgb-color-code">RGB(255, 255, 255)</p>
+            <p id="rgb-color-code">linear-gradient(#fff, red, green)</p>
             <button id="generate-new-color" onclick="fun_genCode()">
                 Generate New Color
             </button>
@@ -54,25 +55,44 @@
             const rgbColorCode = document.querySelector("#rgb-color-code");
             const generateNewColor = document.querySelector("#generate-new-color");
             const copyColorCode = document.querySelector("#copy-color-code");
+            let rgbColor;
 
-            function fun_genCode() {
-                const num1 = Math.floor(Math.random() * (255 - 0 + 1)) + 0;
-                const num2 = Math.floor(Math.random() * (255 - 0 + 1)) + 0;
-                const num3 = Math.floor(Math.random() * (255 - 0 + 1)) + 0;
-                rgbColorCanvas.style.backgroundColor = `rgb(${num1}, ${num2}, ${num3})`;
-                rgbColorCode.innerText = `RGB(${num1}, ${num2}, ${num3})`;
+            function generateGradient() {
+                const color1 = hexColorGenerator();
+                const color2 = hexColorGenerator();
+                const color3 = hexColorGenerator();
+
+                rgbColor = `linear-gradient(${color1}, ${color2}, ${color3})`;
+
+                rgbColorCanvas.style.background = rgbColor;
+                rgbColorCode.textContent = rgbColor; // Display the color code
             }
 
             copyColorCode.addEventListener("click", () => {
-                const text = rgbColorCode.innerText;
+                if (!rgbColor) {
+                    alert("Generate a color first!");
+                    return;
+                }
+
                 const elem = document.createElement("textarea");
-                elem.value = text;
+                elem.value = rgbColor;
                 document.body.appendChild(elem);
                 elem.select();
                 document.execCommand("copy");
                 document.body.removeChild(elem);
-                alert("code copied!");
+                alert("Color code copied!");
             });
+
+            function hexColorGenerator() {
+                const hexCharacters = "0123456789abcdef";
+                let color = "#";
+                for (let i = 0; i < 6; i++) {
+                    color += hexCharacters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+
+            generateNewColor.addEventListener("click", generateGradient);
         </script>
     </body>
 </html>
